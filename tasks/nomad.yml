@@ -76,16 +76,7 @@
    state: directory
    owner: nomad
    group: nomad
-   mode: 0750
-
-- name: Copy configuration
-  template:
-    src: templates/nomad.hcl.j2
-    dest: /etc/nomad/nomad.hcl
-    owner: nomad
-    group: nomad
-    mode: 0640
-  become: true
+   mode: 0640
 
 - name: Copy the systemd service
   become: yes
