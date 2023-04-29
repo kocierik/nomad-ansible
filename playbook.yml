@@ -1,7 +1,9 @@
-- name: Nomad
+- name: Provision Nomad node
   hosts: all 
+  vars:
+    nomad_agent_type: client
+    nomad_bootstrap_expect: 1
   tasks:
     - name: Setup nomad
       ansible.builtin.import_tasks: tasks/nomad.yml
-  vars:
-    nomad_agent_type: client
+

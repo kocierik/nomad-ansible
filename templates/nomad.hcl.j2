@@ -11,17 +11,19 @@ data_dir = "/opt/nomad"
 advertise {
   http  = "{{ ansible_default_ipv4.address }}:{{ nomad_port_http }}"
   rpc   = "{{ ansible_default_ipv4.address }}:{{ nomad_port_rpc }}"
+  serf  = "{{ ansible_default_ipv4.address }}:{{ nomad_port_serf }}"
 }
 
 {% if nomad_agent_type == 'server' %}
 server {
   enabled = true
-  bootstrap_expect = {{ nomad_bootstrap_expect }}
-  # encrypt = "{{ nomad_encrypt }}"
 
-  # server_join {
-  #   retry_join = {{ nomad_retry_join_server | to_json }}
-  # }
+  bootstrap_expect = {{ nomad_bootstrap_expect }}
+
+  server_join {
+    retry_join = {{ nomad_retry_join | to_json }}
+  }
+
 }
 {% else %}
 client {
