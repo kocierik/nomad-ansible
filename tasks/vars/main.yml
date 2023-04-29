@@ -1,0 +1,40 @@
+---
+# Override these in playbook with 'vars:' block
+
+# Controls whether an agent is in server or client mode.
+nomad_agent_type: client
+
+# Specifies the region the Nomad agent is a member of.
+nomad_log_level: DEBUG
+
+# The data center in which the agent is running
+nomad_data_center: dc1
+
+# The number of Nomad servers you will use; three or five is recommended.
+nomad_bootstrap_expect: 1
+
+# The secret key to use for encryption of Nomad network traffic
+nomad_host_ip: 130.136.3.153
+
+nomad_port_http: 4646
+
+nomad_port_rpc: 4647
+
+# Specifies which address the Nomad agent should bind to for network services,
+# including the HTTP interface as well as the internal gossip protocol and
+# RPC mechanism.
+nomad_bind_addr: 0.0.0.0
+
+# The server_join stanza specifies how the Nomad agent will discover and
+# connect to Nomad servers.
+nomad_retry_join: ["130.136.3.153"]
+
+nomad_client_docker_auth_path: null
+
+# A list of allowed Linux capabilities. Defaults to capabilities allowed by
+# docker by default.
+nomad_client_docker_allowed_caps: [
+  "CHOWN", "DAC_OVERRIDE", "FSETID", "FOWNER", "MKNOD", "NET_RAW", "SETGID",
+  "SETUID", "SETFCAP", "SETPCAP", "NET_BIND_SERVICE", "SYS_CHROOT", "KILL",
+  "AUDIT_WRITE"
+]

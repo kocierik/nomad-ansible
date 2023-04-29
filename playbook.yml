@@ -1,0 +1,7 @@
+- name: Nomad
+  hosts: all 
+  tasks:
+    - name: Setup nomad
+      ansible.builtin.import_tasks: tasks/nomad.yml
+  vars:
+    nomad_agent_type: client
