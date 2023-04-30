@@ -6,6 +6,8 @@ log_level = "{{ nomad_log_level }}"
 
 datacenter = "{{ nomad_data_center }}"
 
+name = "{{ nomad_name_host }}"
+
 data_dir = "/opt/nomad"
 
 advertise {
@@ -35,16 +37,10 @@ client {
 }
 {% endif %}
 
-# plugin "docker" {
-#   config {
-#     {% if nomad_client_docker_auth_path %}
-#     auth {
-#       config = "{{ nomad_client_docker_auth_path }}"
-#     }
-#     {% endif %}
-#
-#     {% if nomad_client_docker_allowed_caps %}
-#     allow_caps = {{ nomad_client_docker_allowed_caps | to_json }}
-#     {% endif %}
-#   }
-# }
+
+plugin "raw_exec" {
+  config {
+    enabled = true
+  }
+}
+
